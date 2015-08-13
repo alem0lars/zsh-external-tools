@@ -39,12 +39,13 @@ if [[ "${TERM}" == 'dumb' ]]; then
   return 1
 fi
 
+base_dir=$(dirname $(/bin/readlink -f ${(%):-%N}))
 # Load external tools support.
 # Accept var-args of names for external tools which support should be loaded.
 function load_external_tools {
   local -a external_tools
   external_tools=("$argv[@]")
-  external_tools_dir="${0:a:h}/external-tools"
+  external_tools_dir="${base_dir}/external-tools"
   for f (${external_tools_dir}/*.zsh) {
     name="${$(basename ${f})%.*}"
     if [[ "${external_tools[(r)$name]}" == "${name}" ]] || \
