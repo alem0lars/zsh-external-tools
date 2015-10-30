@@ -39,7 +39,7 @@ if [[ "${TERM}" == 'dumb' ]]; then
   return 1
 fi
 
-base_dir=$(dirname $(/bin/readlink -f ${(%):-%N}))
+base_dir=$(dirname $(readlink -f ${(%):-%N}))
 # Load external tools support.
 # Accept var-args of names for external tools which support should be loaded.
 function load_external_tools {
