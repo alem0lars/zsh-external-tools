@@ -39,7 +39,14 @@ if [[ "${TERM}" == 'dumb' ]]; then
   return 1
 fi
 
-base_dir=$(dirname $(readlink -f ${(%):-%N}))
+# Built-in readlink in OSX doesn't work: the coreutils version is needed.
+if [[ `uname` == 'Darwin' ]]; then
+  readlink_cmd=greadlink
+else
+  readlink_cmd=readlink
+fi
+
+base_dir=$(dirname $(eval $readlink_cmd -f ${(%):-%N}))
 # Load external tools support.
 # Accept var-args of names for external tools which support should be loaded.
 function load_external_tools {
