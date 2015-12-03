@@ -32,7 +32,7 @@
 # }}} ##########################################################################
 
 
-osx_dockertoolbox_start="/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh"
+osx_dockertoolbox_start="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
 
 
 if [ $commands[docker] ]; then # check if 'docker' is installed
