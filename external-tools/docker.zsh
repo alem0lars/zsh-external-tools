@@ -32,11 +32,28 @@
 # }}} ##########################################################################
 
 
-osx_dockertoolbox_start="/Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
-
-
 if [ $commands[docker] ]; then # check if 'docker' is installed
-  if [[ -f "${osx_dockertoolbox_start}" ]]; then
-    source "${osx_dockertoolbox_start}"
+  
+  VM=default
+  DOCKER_MACHINE=$commands[docker-machine]
+  VBOXMANAGE=$commands[VBoxManage]
+  
+  # Create the docker host if it doesn't exit.
+  $VBOXMANAGE showvminfo $VM &> /dev/null
+  VM_EXISTS_CODE=$?
+  if [ $VM_EXISTS_CODE -eq 1 ]; then
+    $DOCKER_MACHINE rm -f $VM &> /dev/null
+    rm -rf ~/.docker/machine/machines/$VM
+    $DOCKER_MACHINE create -d virtualbox --virtualbox-memory 2048 --virtualbox-disk-size 204800 $VM
   fi
+
+  # Start the docker host.
+  VM_STATUS=$($DOCKER_MACHINE status $VM)
+  if [ "$VM_STATUS" != "Running" ]; then
+    $DOCKER_MACHINE start $VM
+    yes | $DOCKER_MACHINE regenerate-certs $VM
+  fi
+
+  # Setup docker environment.
+  eval $($DOCKER_MACHINE env $VM --shell=zsh)
 fi
