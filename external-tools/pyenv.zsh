@@ -7,7 +7,7 @@
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
 # Project informations:                                                        #
-#   - Homepage:        https://github.com/alem0lars/zsh-complete               #
+#   - Homepage:        https://github.com/alem0lars/zsh-external-tools         #
 #   - Getting started: see README.md in the project root folder                #
 #                                                                              #
 # License: Apache v2.0 (see below)                                             #
