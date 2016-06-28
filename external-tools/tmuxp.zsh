@@ -33,5 +33,5 @@
 
 
 if [ $commands[tmuxp] ]; then # check if 'tmuxp' is installed
-  source $commands[tmuxp.zsh]
+  eval "$(_TMUXP_COMPLETE=source tmuxp)"
 fi
