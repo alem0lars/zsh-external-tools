@@ -55,7 +55,7 @@ else
 fi
 
 for pyenvdir in "${pyenvdirs[@]}"; do
-  if [ -d ${pyenvdir}/bin -a ${FOUND_PYENV} -eq 0 ]; then
+  if [ -d ${pyenvdir} -a ${FOUND_PYENV} -eq 0 ]; then
     FOUND_PYENV=1
     if [[ ${PYENV_ROOT} = "" ]]; then
       export PYENV_ROOT="${pyenvdir}"
