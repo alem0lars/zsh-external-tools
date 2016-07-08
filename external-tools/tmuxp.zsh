@@ -33,5 +33,7 @@
 
 
 if [ $commands[tmuxp] ]; then # check if 'tmuxp' is installed
+  autoload bashcompinit
+  bashcompinit
   eval "$(_TMUXP_COMPLETE=source tmuxp)"
 fi
