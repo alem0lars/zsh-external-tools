@@ -34,7 +34,7 @@
 # If sman is in a well-known path, add it to `$PATH`.
 if [ ! $commmands[sman] ]; then
   if [ -d ~/.sman/bin ]; then
-    export PATH="$PATH:~/.sman/bin"
+    export PATH="$PATH:$(readlink -f ~/.sman/bin)"
   fi
 fi
 
