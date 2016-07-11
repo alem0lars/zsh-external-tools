@@ -31,14 +31,15 @@
 #                                                                              #
 # }}} ##########################################################################
 
-# If sman is in a well-known path, add it to `$PATH`.
-if [ ! $commmands[sman] ]; then
+# If `sman` is in a well-known path, add it to `$PATH`.
+if [ ! $commands[sman] ]; then
   if [ -d ~/.sman/bin ]; then
     export PATH="$PATH:$(readlink -f ~/.sman/bin)"
   fi
 fi
 
-if [ $commmands[sman] ]; then
+# If `sman` is available, initialize it.
+if [ $commands[sman] ]; then
   
   snip() {
     if [[ ${1} == "run" ]] || [[ ${1} == "r" ]]; then
