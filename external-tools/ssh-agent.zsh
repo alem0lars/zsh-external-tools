@@ -33,7 +33,7 @@
 
 
 # Systemd user service support.
-if [[ -f "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
+if [[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 fi
 
