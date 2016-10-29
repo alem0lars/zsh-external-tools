@@ -32,37 +32,37 @@
 # }}} ##########################################################################
 
 
-if [ $commands[fzf] ]; then
-  _base_dir=$(dirname $(dirname $(readlink -f $commands[fzf])))
-elif [ -d ${HOME}/.fzf ]; then
+if [ -d ${HOME}/.fzf ]; then
   _base_dir="${HOME}/.fzf"
 fi
 
 if [ -d "${_base_dir}" ]; then
-  _bin_dir="${_base_dir}/bin"
-  _man_dir="${_base_dir}/man"
-  _shell_dir="${_base_dir}/shell"
-
   # Setup `$PATH`.
-  if [[ ! "$PATH" == *${_bin_dir}* ]]; then
-    export PATH="$PATH:${_bin_dir}"
+  _bin_dir="${_base_dir}/bin"
+  if [[ -d "${_bin_dir}" ]]
+    if [[ ! "$PATH" == *${_bin_dir}* ]]; then
+      export PATH="$PATH:${_bin_dir}"
+    fi
   fi
+  unset _bin_dir
 
   # Setup `$MANPATH`.
-  if [[ ! "$MANPATH" == *${_man_dir}* && -d "${_man_dir}" ]]; then
+  _man_dir="${_base_dir}/man"
+  if [[ -d "${_man_dir}" && ! "$MANPATH" == *${_man_dir}* ]]; then
     export MANPATH="$MANPATH:${_man_dir}"
   fi
-  
-  # Enable auto-completion.
-  [[ $- == *i* ]] && source "${_shell_dir}/completion.zsh" 2> /dev/null
-  
-  # Setup key-bindings.
-  source "${_shell_dir}/key-bindings.zsh"
-  
-  unset _base_dir
-  unset _bin_dir
   unset _man_dir
+
+  _shell_dir="${_base_dir}/shell"
+  if [[ -d "${_shell_dir}" ]]; then
+    # Enable auto-completion.
+    [[ $- == *i* ]] && source "${_shell_dir}/completion.zsh" 2> /dev/null
+    # Setup key-bindings.
+    source "${_shell_dir}/key-bindings.zsh"
+  fi
   unset _shell_dir
+
+  unset _base_dir
 fi
 
 
