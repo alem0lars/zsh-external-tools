@@ -40,31 +40,33 @@ _rbenv-from-homebrew-installed() {
   brew --prefix rbenv &> /dev/null
 }
 
-FOUND_RBENV=0
-if _homebrew-installed && _rbenv-from-homebrew-installed; then
-  rbenvdirs=($(brew --prefix rbenv) "${rbenvdirs[@]}")
-else
-  rbenvdirs=(                \
-    "${HOME}/.rbenv"         \
-    "/opt/rbenv"             \
-    "/usr/share/rbenv"       \
-    "/usr/local/rbenv"       \
-    "/usr/local/opt/rbenv"   \
-    "/usr/local/share/rbenv" \
-  )
-fi
-
-for rbenvdir in "${rbenvdirs[@]}"; do
-  if [ -d ${rbenvdir} -a ${FOUND_RBENV} -eq 0 ]; then
-    FOUND_RBENV=1
-    if [[ ${RBENV_ROOT} = "" ]]; then
-      export RBENV_ROOT=${rbenvdir}
-    fi
-    export PATH="${rbenvdir}/bin:${PATH}"
-    eval "$(rbenv init - zsh)"
+if [[ ! -z "${commands[rbenv]}" ]]; then
+  FOUND_RBENV=0
+  if _homebrew-installed && _rbenv-from-homebrew-installed; then
+    rbenvdirs=($(brew --prefix rbenv) "${rbenvdirs[@]}")
+  else
+    rbenvdirs=(                \
+      "${HOME}/.rbenv"         \
+      "/opt/rbenv"             \
+      "/usr/share/rbenv"       \
+      "/usr/local/rbenv"       \
+      "/usr/local/opt/rbenv"   \
+      "/usr/local/share/rbenv" \
+    )
   fi
-done
-unset rbenvdir
+
+  for rbenvdir in "${rbenvdirs[@]}"; do
+    if [ -d ${rbenvdir} -a ${FOUND_RBENV} -eq 0 ]; then
+      FOUND_RBENV=1
+      if [[ ${RBENV_ROOT} = "" ]]; then
+        export RBENV_ROOT=${rbenvdir}
+      fi
+      export PATH="${rbenvdir}/bin:${PATH}"
+      eval "$(rbenv init - zsh)"
+    fi
+  done
+  unset rbenvdir
+fi
 
 
 # vim: set filetype=zsh :
