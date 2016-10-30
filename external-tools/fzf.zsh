@@ -39,7 +39,7 @@ fi
 if [ -d "${_base_dir}" ]; then
   # Setup `$PATH`.
   _bin_dir="${_base_dir}/bin"
-  if [[ -d "${_bin_dir}" ]]
+  if [[ -d "${_bin_dir}" ]]; then
     if [[ ! "$PATH" == *${_bin_dir}* ]]; then
       export PATH="$PATH:${_bin_dir}"
     fi
