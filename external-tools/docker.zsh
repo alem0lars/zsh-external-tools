@@ -35,7 +35,7 @@
 if [[ ${commands[docker]} ]]; then
   alias -g docker_rm_images='docker rmi $(docker images -q)'
   alias -g docker_rm_containers='docker rm  $(docker ps -a -q)'
-done
+fi
 
 
 # vim: set filetype=zsh :
