@@ -34,7 +34,7 @@
 
 if [[ $commands[node] ]]; then
   function N () {
-    echo "./node_modules/.bin/$1 ${@:2}"
+    eval "./node_modules/.bin/$1 ${@:2}"
   }
 fi
 
