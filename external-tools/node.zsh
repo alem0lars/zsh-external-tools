@@ -33,8 +33,8 @@
 
 
 if [[ $commands[node] ]]; then
-  function N() {
-    eval './node_modules/.bin/$1 "${@:2}"'
+  function N () {
+    echo "./node_modules/.bin/$1 ${@:2}"
   }
 fi
 
