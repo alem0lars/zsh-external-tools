@@ -32,9 +32,9 @@
 # }}} ##########################################################################
 
 
-if [[ $commands[node] ]]; then
+if [[ $commands[npm] ]]; then
   function N () {
-    ./node_modules/.bin/$1 ${@:2}
+    $(npm bin)/$1 ${@:2}
   }
 fi
 
