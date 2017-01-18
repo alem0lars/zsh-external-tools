@@ -65,5 +65,13 @@ if [ -d "${_base_dir}" ]; then
   unset _base_dir
 fi
 
+if [[ $commands[fzf] && $commands[ag] ]]; then
+  # Set `ag` as the default source for `fzf`
+  export FZF_DEFAULT_COMMAND='ag -g ""'
+
+  # Apply the command to CTRL-T as well
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+fi
+
 
 # vim: set filetype=zsh :
