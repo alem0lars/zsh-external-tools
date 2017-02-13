@@ -35,11 +35,15 @@
 if [[ "${commands[task]}" ]]; then
   # TODO use fizzy
   if [[ "${USER}" == "alem0lars" ]]; then
+    # basic
     alias -g ty="task +yoroi"
-    alias -g tyg0="ty project:g0"
-    alias -g tymop="ty project:mop"
-    alias -g tygenku="ty project:genku"
-    alias -g tybro="tygenku +bro"
+    alias -g tyd="task +dev"
+    # by project
+    alias -g tydg0="tydev project:g0"
+    alias -g tydmop="tydev project:mop"
+    alias -g tydgenku="tydev project:genku"
+    # most used
+    alias -g tydbro="tygenku +bro"
   fi
 fi
 
