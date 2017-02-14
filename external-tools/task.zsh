@@ -39,11 +39,11 @@ if [[ "${commands[task]}" ]]; then
     alias -g ty="task +yoroi"
     alias -g tyd="task +dev"
     # by project
-    alias -g tydg0="tydev project:g0"
-    alias -g tydmop="tydev project:mop"
-    alias -g tydgenku="tydev project:genku"
+    alias -g tydg0="tyd project:g0"
+    alias -g tydmop="tyd project:mop"
+    alias -g tydgenku="tyd project:genku"
     # most used
-    alias -g tydbro="tygenku +bro"
+    alias -g tydbro="tydgenku +bro"
   fi
 fi
 
