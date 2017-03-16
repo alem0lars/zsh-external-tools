@@ -40,7 +40,7 @@ fi
 
 # If `sman` is available, initialize it.
 if [ $commands[sman] ]; then
-  
+
   snip() {
     if [[ ${1} == "run" ]] || [[ ${1} == "r" ]]; then
       eval "$(sman $@)"
@@ -48,7 +48,7 @@ if [ $commands[sman] ]; then
       sman $@
     fi
   }
-  
+
   _escaped_string() {
     if [[ "$1" =~ ^[-:_[:alnum:]]*$ ]];
     then
@@ -60,7 +60,7 @@ if [ $commands[sman] ]; then
       echo "\"$1\""
     fi
   }
-  
+
   _history_command() {
     if [[ ! -z $BASH_VERSION ]];
     then
@@ -70,7 +70,7 @@ if [ $commands[sman] ]; then
       echo "print -s"
     fi
   }
-  
+
   _append_history() {
     local command
     for arg; do
