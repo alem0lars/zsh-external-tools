@@ -33,7 +33,8 @@
 
 
 if [[ $commands[npm] ]]; then
-  abbrev-alias nb="$(npm bin)/"
+  abbrev-alias -f nb="printf $(npm bin)/"
+  abbrev-alias -f ng="printf $(npm bin)/gulp"
 fi
 
 

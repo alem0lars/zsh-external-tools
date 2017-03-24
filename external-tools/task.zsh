@@ -35,16 +35,27 @@
 if [[ "${commands[task]}" ]]; then
   # TODO use fizzy
   if [[ "${USER}" == "alem0lars" ]]; then
-    # basic
+
+    # == YOROI ==
+
+    # Basic.
     abbrev-alias ty="task +yoroi"
-    abbrev-alias tyd="task +dev"
-    # by project
-    abbrev-alias tydg0="tyd project:g0"
-    abbrev-alias tydmop="tyd project:mop"
-    abbrev-alias tydgenku="tyd project:genku"
-    # most used
-    abbrev-alias tydbro="tydgenku +bro"
-    abbrev-alias tydhoney="tydgenku +honey"
+    abbrev-alias tyd="task +yoroi +dev"
+    # By project.
+    abbrev-alias tydg0="task project:g0 +yoroi +dev"
+    abbrev-alias tydmop="task project:mop +yoroi +dev"
+    abbrev-alias tydgenku="task project:genku +yoroi +dev"
+    # Most used.
+    abbrev-alias tydbro="tydgenku project:genku +yoroi +dev +bro"
+    abbrev-alias tydhoney="tydgenku project:genku +yoroi +dev +honey"
+
+    # == ORGANIZATIONAL ==
+
+    abbrev-alias tod="task project:daily"
+    abbrev-alias tow="task project:weekly"
+    abbrev-alias tom="task project:monthly"
+    abbrev-alias tot="task project:trial"
+
   fi
 fi
 
