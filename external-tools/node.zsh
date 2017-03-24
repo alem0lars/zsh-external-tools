@@ -33,7 +33,7 @@
 
 
 if [[ $commands[npm] ]]; then
-  abbrev-alias -f nb="npm bin"
+  abbrev-alias nb="$(npm bin)/"
 fi
 
 
