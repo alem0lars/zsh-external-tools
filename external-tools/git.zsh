@@ -37,7 +37,7 @@ if [[ "${commands[git]}" ]]; then
   abbrev-alias gia="git add -A"
   abbrev-alias gic="git commit -m"
   abbrev-alias gil="git pull --rebase=interactive"
-  abbrev-alias gip="git push"
+  abbrev-alias giu="git push"
 
   # Do everything.
   abbrev-alias gii="git add -A && git commit --allow-empty-message && git pull --rebase=interactive && git push"
@@ -45,6 +45,12 @@ if [[ "${commands[git]}" ]]; then
   abbrev-alias gis="git status -s"
   abbrev-alias gim="git commit --amend --verbose"
   abbrev-alias gim="git diff"
+
+  abbrev-alias gip="git commit --verbose --patch"
+
+  abbrev-alias gio="git checkout -b"
+
+  abbrev-alias gib="git submodule update --init --recursive --remote"
 
 fi
 
