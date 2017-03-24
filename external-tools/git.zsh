@@ -37,10 +37,10 @@ if [[ "${commands[git]}" ]]; then
   abbrev-alias gia="git add -A"
   abbrev-alias gic="git commit -m"
   abbrev-alias gil="git pull --rebase=interactive"
-  abbrev-alias giu="git push"
+  abbrev-alias giu="git push --all"
 
   # Do everything.
-  abbrev-alias gii="git add -A && git commit --allow-empty-message && git pull --rebase=interactive && git push"
+  abbrev-alias gii="git add -A && git commit --allow-empty-message && git pull --rebase=interactive && git push --all"
 
   abbrev-alias gis="git status -s"
   abbrev-alias gim="git commit --amend --verbose"
