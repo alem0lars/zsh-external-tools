@@ -33,9 +33,7 @@
 
 
 if [[ $commands[npm] ]]; then
-  function N () {
-    $(npm bin)/$1 ${@:2}
-  }
+  abbrev-alias -f nb="npm bin"
 fi
 
 
