@@ -36,15 +36,15 @@ if [[ "${commands[task]}" ]]; then
   # TODO use fizzy
   if [[ "${USER}" == "alem0lars" ]]; then
     # basic
-    alias ty="task +yoroi"
-    alias tyd="task +dev"
+    abbrev-alias ty="task +yoroi"
+    abbrev-alias tyd="task +dev"
     # by project
-    alias tydg0="tyd project:g0"
-    alias tydmop="tyd project:mop"
-    alias tydgenku="tyd project:genku"
+    abbrev-alias tydg0="tyd project:g0"
+    abbrev-alias tydmop="tyd project:mop"
+    abbrev-alias tydgenku="tyd project:genku"
     # most used
-    alias tydbro="tydgenku +bro"
-    alias tydhoney="tydgenku +honey"
+    abbrev-alias tydbro="tydgenku +bro"
+    abbrev-alias tydhoney="tydgenku +honey"
   fi
 fi
 

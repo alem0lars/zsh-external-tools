@@ -34,10 +34,10 @@
 
 if [[ "${commands[tmsu]}" ]]; then
   # Define custom aliases.
-  alias tmf="tmsu files"
-  alias tmt="tmsu tags"
-  alias tma="tmsu tag"
-  alias tmr="tmsu untag"
+  abbrev-alias tmf="tmsu files"
+  abbrev-alias tmt="tmsu tags"
+  abbrev-alias tma="tmsu tag"
+  abbrev-alias tmr="tmsu untag"
 fi
 
 

@@ -34,9 +34,9 @@
 
 if [[ "${commands[tree]}" ]]; then
   # Show tree
-  alias tre="tree -lFC --dirsfirst"
+  abbrev-alias T="tree -lFC --dirsfirst"
   # Show tree (verbose information).
-  alias trev="tre -phug --du"
+  abbrev-alias TT="tree -lFC --dirsfirst -phug --du"
 fi
 
 

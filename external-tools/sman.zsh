@@ -50,11 +50,9 @@ if [ $commands[sman] ]; then
   }
 
   _escaped_string() {
-    if [[ "$1" =~ ^[-:_[:alnum:]]*$ ]];
-    then
+    if [[ "$1" =~ ^[-:_[:alnum:]]*$ ]]; then
       echo "$1"
-    elif [[ "$1" =~ ^[^\']*$ ]];
-    then
+    elif [[ "$1" =~ ^[^\']*$ ]]; then
       echo "'$1'"
     else
       echo "\"$1\""
