@@ -34,15 +34,21 @@
 
 if [[ "${commands[docker]}" ]]; then
 
+  # Docker info.
+  abbrev-alias doci='docker info'
+
   # List all containers.
-  abbrev-alias -f doclsc='docker ps -a -q'
+  abbrev-alias doclsc='docker ps -a -q'
   # List all non-running containers.
-  abbrev-alias -f doclscnr='docker ps -a -f status=exited -f status=created -q'
+  abbrev-alias doclscnr='docker ps -a -f status=exited -f status=created -q'
 
   # List all images.
-  abbrev-alias -f doclsi='docker images -a -q'
+  abbrev-alias doclsi='docker images -a -q'
   # List all dangling docker images.
-  abbrev-alias -f doclsid='docker images -f dangling=true -q'
+  abbrev-alias doclsid='docker images -f dangling=true -q'
+
+  # List all dangling volumes.
+  abbrev-alias doclsvd='docker volume ls -qf dangling=true'
 
   # Remove all containers.
   abbrev-alias docrmc='docker rm $(docker ps -a -q)'
@@ -53,6 +59,9 @@ if [[ "${commands[docker]}" ]]; then
   abbrev-alias docrmi='docker rmi $(docker images -a -q)'
   # Remove all dangling docker images.
   abbrev-alias docrmid='docker rmi $(docker images -f dangling=true -q)'
+
+  # Remove all dangling volumes.
+  abbrev-alias docrmvd='docker volume rm $(docker volume ls -qf dangling=true)'
 
 fi
 
