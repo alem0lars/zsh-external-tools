@@ -34,6 +34,7 @@
 
 if [[ $commands[npm] ]]; then
   abbrev-alias -f nb='printf $(realpath --relative-to=. "$(npm bin)")/'
+  abbrev-alias -f nu='printf $(realpath --relative-to=. "$(npm bin)")/bunyan'
   abbrev-alias -f ng='printf $(realpath --relative-to=. "$(npm bin)")/gulp'
 fi
 
