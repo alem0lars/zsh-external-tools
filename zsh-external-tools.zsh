@@ -61,12 +61,14 @@ function load_external_tools {
     fi
   }
 }
-unset base_dir
 
 # Load the enabled external tools.
 zstyle -a ':external-tools' enabled 'external_tools_enabled'
 load_external_tools "$external_tools_enabled[@]"
+
+# Cleanup
 unset external_tools_enabled
+unset base_dir
 
 
 # vim: set filetype=zsh :
