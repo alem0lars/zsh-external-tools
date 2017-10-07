@@ -61,6 +61,7 @@ function load_external_tools {
     fi
   }
 }
+unset base_dir
 
 # Load the enabled external tools.
 zstyle -a ':external-tools' enabled 'external_tools_enabled'
