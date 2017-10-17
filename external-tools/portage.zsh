@@ -33,10 +33,10 @@
 
 
 if [ $commands[emerge] ]; then
-  abbrev-alias emw="emerge -uNDt @world"
-  abbrev-alias emwb="emw --backtrack=1000"
+  abbrev-alias emw="sudo emerge -uNDt @world"
+  abbrev-alias emwb="sudo emw --backtrack=1000"
 
-  abbrev-alias ems="emerge -uNDt @system"
+  abbrev-alias ems="sudo emerge -uNDt @system"
   abbrev-alias emsb="ems --backtrack=1000"
 fi
 
