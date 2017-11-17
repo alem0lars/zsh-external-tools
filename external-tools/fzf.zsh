@@ -71,6 +71,17 @@ if [[ $commands[fzf] && $commands[ag] ]]; then
 
   # Apply the command to CTRL-T as well
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+  # Set hotkeys (assuming widgets are already defined)
+  if typeset -f fzf-file-widget > /dev/null; then
+    bindkey '^T' fzf-file-widget
+  fi
+  if typeset -f fzf-cd-widget > /dev/null; then
+    bindkey '^E' fzf-cd-widget
+  fi
+  if typeset -f fzf-history-widget > /dev/null; then
+    bindkey '^R' fzf-history-widget
+  fi
 fi
 
 
