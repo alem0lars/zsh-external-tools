@@ -65,12 +65,14 @@ if [ -d "${_base_dir}" ]; then
   unset _base_dir
 fi
 
-if [[ $commands[fzf] && $commands[ag] ]]; then
-  # Set `ag` as the default source for `fzf`
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+if [[ $commands[fzf] ]]; then
+  if [[ $commands[ag] ]]; then
+    # Set `ag` as the default source for `fzf`
+    export FZF_DEFAULT_COMMAND='ag -g ""'
 
-  # Apply the command to CTRL-T as well
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    # Apply the command to CTRL-T as well
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  fi
 
   # Set hotkeys (assuming widgets are already defined)
   if typeset -f fzf-file-widget > /dev/null; then
@@ -82,6 +84,16 @@ if [[ $commands[fzf] && $commands[ag] ]]; then
   if typeset -f fzf-history-widget > /dev/null; then
     bindkey '^R' fzf-history-widget
   fi
+
+  fzf-preview-widget() {
+    LBUFFER="${LBUFFER}$(FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --preview-window right:70% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {}) 2> /dev/null | head -500'" __fsel)"
+    local ret=$?
+    zle redisplay
+    typeset -f zle-line-init >/dev/null && zle zle-line-init
+    return $ret
+  }
+  zle     -N   fzf-preview-widget
+  bindkey '^Y' fzf-preview-widget
 fi
 
 
