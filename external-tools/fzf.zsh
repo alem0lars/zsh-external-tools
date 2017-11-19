@@ -31,12 +31,25 @@
 #                                                                              #
 # }}} ##########################################################################
 
+function fzf-preview-widget() {
+  local opts="${FZF_DEFAULT_OPTS} --preview-window right:70% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {}) 2> /dev/null | head -500'"
+  local height="100%"
 
-if [ -d ${HOME}/.fzf ]; then
+  LBUFFER="${LBUFFER}$(FZF_DEFAULT_OPTS="${opts}" FZF_TMUX_HEIGHT="${height}" __fsel)"
+
+  local ret=$?
+  zle redisplay
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+
+################################################################################
+
+if [[ -d ${HOME}/.fzf ]]; then
   _base_dir="${HOME}/.fzf"
 fi
 
-if [ -d "${_base_dir}" ]; then
+if [[ -d "${_base_dir}" ]]; then
   # Setup `$PATH`.
   _bin_dir="${_base_dir}/bin"
   if [[ -d "${_bin_dir}" ]]; then
@@ -65,6 +78,8 @@ if [ -d "${_base_dir}" ]; then
   unset _base_dir
 fi
 
+################################################################################
+
 if [[ $commands[fzf] ]]; then
   if [[ $commands[ag] ]]; then
     # Set `ag` as the default source for `fzf`
@@ -85,13 +100,6 @@ if [[ $commands[fzf] ]]; then
     bindkey '^R' fzf-history-widget
   fi
 
-  fzf-preview-widget() {
-    LBUFFER="${LBUFFER}$(FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --preview-window right:70% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {}) 2> /dev/null | head -500'" __fsel)"
-    local ret=$?
-    zle redisplay
-    typeset -f zle-line-init >/dev/null && zle zle-line-init
-    return $ret
-  }
   zle     -N   fzf-preview-widget
   bindkey '^Y' fzf-preview-widget
 fi
