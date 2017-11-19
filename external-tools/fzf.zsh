@@ -33,7 +33,7 @@
 
 function fzf-preview-widget() {
   local opts="${FZF_DEFAULT_OPTS} --preview-window right:70% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {}) 2> /dev/null | head -500'"
-  local height="100%"
+  local height="98%"
 
   LBUFFER="${LBUFFER}$(FZF_DEFAULT_OPTS="${opts}" FZF_TMUX_HEIGHT="${height}" __fsel)"
 
