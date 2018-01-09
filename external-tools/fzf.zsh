@@ -106,7 +106,7 @@ if [[ $commands[fzf] ]]; then
     echo '> Widget "fzf-history-widget" is not defined: skipping..'
   fi
   if typeset -f zic-completion > /dev/null; then
-    bindkey '^W' zic-completion
+    bindkey '^S' zic-completion
   else
     echo '> Widget "zip-completion" is not defined: skipping..'
   fi
