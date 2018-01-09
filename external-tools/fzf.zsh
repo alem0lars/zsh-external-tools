@@ -89,31 +89,37 @@ if [[ $commands[fzf] ]]; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
 
-  # Set hotkeys for some widgets (assuming they are already defined).
+  # => Set hotkeys for some widgets (assuming they are already defined).
+
   if typeset -f fzf-file-widget > /dev/null; then
     bindkey '^T' fzf-file-widget
   else
     echo '> Widget "fzf-file-widget" is not defined: skipping..'
   fi
+
   if typeset -f fzf-cd-widget > /dev/null; then
     bindkey '^E' fzf-cd-widget
   else
     echo '> Widget "fzf-cd-widget" is not defined: skipping..'
   fi
+
   if typeset -f fzf-history-widget > /dev/null; then
     bindkey '^R' fzf-history-widget
   else
     echo '> Widget "fzf-history-widget" is not defined: skipping..'
   fi
-  if typeset -f zic-completion > /dev/null; then
-    bindkey '^S' zic-completion
+
+  if typeset -f fuzzy-search-and-edit > /dev/null; then
+    bindkey '^S' fuzzy-search-and-edit
   else
     echo '> Widget "zip-completion" is not defined: skipping..'
   fi
 
   # Set hotkeys for widgets defined in this file (=> they are always present).
+
   zle     -N   fzf-preview-widget
   bindkey '^Y' fzf-preview-widget
+
 fi
 
 
