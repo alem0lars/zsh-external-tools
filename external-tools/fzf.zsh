@@ -89,7 +89,7 @@ if [[ $commands[fzf] ]]; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
   fi
 
-  # Set hotkeys (assuming widgets are already defined)
+  # Set hotkeys for some widgets (assuming they are already defined).
   if typeset -f fzf-file-widget > /dev/null; then
     bindkey '^T' fzf-file-widget
   fi
@@ -98,6 +98,9 @@ if [[ $commands[fzf] ]]; then
   fi
   if typeset -f fzf-history-widget > /dev/null; then
     bindkey '^R' fzf-history-widget
+  fi
+  if typeset -f zic-completion > /dev/null; then
+    bindkey '^I' zic-completion
   fi
 
   zle     -N   fzf-preview-widget
