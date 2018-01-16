@@ -109,12 +109,6 @@ if [[ $commands[fzf] ]]; then
     echo '> Widget "fzf-history-widget" is not defined: skipping..'
   fi
 
-  if typeset -f fuzzy-search-and-edit > /dev/null; then
-    bindkey '^S' fuzzy-search-and-edit
-  else
-    echo '> Widget "zip-completion" is not defined: skipping..'
-  fi
-
   # Set hotkeys for widgets defined in this file (=> they are always present).
 
   zle     -N   fzf-preview-widget
