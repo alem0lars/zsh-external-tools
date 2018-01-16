@@ -33,6 +33,9 @@
 
 
 if [ $commands[sudo] ]; then
+
+  abbrev-alias S="sudo" # Uppercase because lowercase is abbrev of `fasd`.
+
   sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
