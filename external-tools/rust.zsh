@@ -36,8 +36,10 @@ if [[ $commands[rustup] ]]; then
   # Setup completion.
   local _rust_zsh_fn="$(rustc --print sysroot)/share/zsh/site-functions"
   if [ -d "${_rust_zsh_fn}" ]; then
-    rm "${_rust_zsh_fn}/_rust" 2>&1 > /dev/null
-    rustup completions zsh > "${_rust_fn}/_rust"
+    if [ -f "${_rust_zsh_fn}" ]; then
+      rm "${_rust_zsh_fn}/_rust"
+    fi
+    rustup completions zsh > "${_rust_zsh_fn}/_rust"
   fi
   fpath+=("${_rust_zsh_fn}")
   unset _rust_zsh_fn
