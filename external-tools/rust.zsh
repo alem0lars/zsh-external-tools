@@ -35,19 +35,21 @@
 if [[ $commands[rustup] ]]; then
   # Setup completion.
   local _rust_zsh_fn="$(rustc --print sysroot)/share/zsh/site-functions"
-  if [ -d ${_rust_zsh_fn} ]; then
+  if [ -d "${_rust_zsh_fn}" ]; then
     rm "${_rust_zsh_fn}/_rust"
     rustup completions zsh > "${_rust_fn}/_rust"
   fi
   fpath+=("${_rust_zsh_fn}")
   unset _rust_zsh_fn
 
+  # Cargo support
+  if [ -d "${HOME}/.cargo/bin" ]; then
+    export PATH="${PATH}:${HOME}/.cargo/bin"
+  fi
+
   # Racer support
-  RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src"
-  if [ -d "${RUST_SRC_PATH}" ]; then
-    export RUST_SRC_PATH
-  else
-    unset RUST_SRC_PATH
+  if [ -d "$(rustc --print sysroot)/lib/rustlib/src" ]; then
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src"
   fi
 fi
 
