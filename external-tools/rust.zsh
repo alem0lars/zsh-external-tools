@@ -51,7 +51,7 @@ if [[ $commands[rustup] ]]; then
 
   # Racer support.
   if [ -d "$(rustc --print sysroot)/lib/rustlib/src" ]; then
-    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src"
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
   fi
 fi
 
