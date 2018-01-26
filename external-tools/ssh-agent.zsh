@@ -1,4 +1,4 @@
-# {{{ File header. #############################################################
+# File header ##################################################################
 #                                                                              #
 # File informations:                                                           #
 # - Name:    external-tools/ssh-agent.zsh                                      #
@@ -29,7 +29,7 @@
 # See the License for the specific language governing permissions and          #
 # limitations under the License.                                               #
 #                                                                              #
-# }}} ##########################################################################
+# ##############################################################################
 
 
 if [[ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
