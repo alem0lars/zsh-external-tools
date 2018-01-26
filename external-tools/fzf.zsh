@@ -45,7 +45,7 @@ function fzf-preview-widget() {
 
 ################################################################################
 
-if [[ -d ${HOME}/.fzf ]]; then
+if [[ -d "${HOME}/.fzf" ]]; then
   _base_dir="${HOME}/.fzf"
 fi
 
@@ -74,8 +74,16 @@ if [[ -d "${_base_dir}" ]]; then
     source "${_shell_dir}/key-bindings.zsh"
   fi
   unset _shell_dir
-
   unset _base_dir
+else if [[ -d "/usr/share/doc/fzf" ]]; then
+  # Enable auto-completion.
+  if [[ -f "/usr/share/doc/fzf/completion.zsh" ]]; then
+    source "/usr/share/doc/fzf/completion.zsh"
+  fi
+  # Setup key-bindings.
+  if [[ -f "/usr/share/doc/fzf/key-bindings.zsh" ]]; then
+    source "/usr/share/doc/fzf/key-bindings.zsh"
+  fi
 fi
 
 ################################################################################
@@ -110,10 +118,8 @@ if [[ $commands[fzf] ]]; then
   fi
 
   # Set hotkeys for widgets defined in this file (=> they are always present).
-
   zle     -N   fzf-preview-widget
   bindkey '^Y' fzf-preview-widget
-
 fi
 
 
