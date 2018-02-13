@@ -38,6 +38,7 @@ if [ $commands[exa] ]; then
   alias ll="ll1"
   alias lr="l -R"
   alias la="l -a"
+  alias lla="ll -a"
 
   alias l1="l -T -L 1"
   alias l2="l -T -L 2"
