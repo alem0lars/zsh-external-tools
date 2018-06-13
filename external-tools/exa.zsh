@@ -34,17 +34,17 @@
 
 if [ $commands[exa] ]; then
 
-  alias l="exa -bgh --git --extended --classify"
+  alias l="exa -bgh --git --classify"
   alias ll="ll1"
   alias lr="l -R"
   alias la="l -a"
   alias lla="ll -a"
 
-  alias l1="l -T -L 1"
-  alias l2="l -T -L 2"
-  alias l3="l -T -L 3"
-  alias l4="l -T -L 4"
-  alias lx="l -T -L"
+  alias l1="l -L 1"
+  alias l2="l -L 2"
+  alias l3="l -L 3"
+  alias l4="l -L 4"
+  alias lx="l -L"
 
   alias ll1="l -l -T -L 1"
   alias ll2="l -l -T -L 2"
