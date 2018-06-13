@@ -31,6 +31,39 @@
 #                                                                              #
 # }}} ##########################################################################
 
+__fsel() {
+  local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | cut -b3-"}"
+  setopt localoptions pipefail 2> /dev/null
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    echo -n "${(q)item} "
+  done
+  local ret=$?
+  echo
+  return $ret
+}
+
+__fzf_use_tmux__() {
+  [ -n "$TMUX_PANE" ] && [ "${FZF_TMUX:-0}" != 0 ] && [ ${LINES:-40} -gt 15 ]
+}
+
+__fzfcmd() {
+  __fzf_use_tmux__ &&
+    echo "fzf-tmux -d${FZF_TMUX_HEIGHT:-40%}" || echo "fzf"
+}
+
+# Ensure precmds are run after cd
+function fzf-redraw-prompt() {
+  local precmd
+  for precmd in $precmd_functions; do
+    $precmd
+  done
+  zle reset-prompt
+}
+zle -N fzf-redraw-prompt
+
 function fzf-preview-widget() {
   local opts="${FZF_DEFAULT_OPTS} --preview-window right:70% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (highlight -O ansi -l {}) 2> /dev/null | head -500'"
   local height="98%"
@@ -42,6 +75,53 @@ function fzf-preview-widget() {
   typeset -f zle-line-init >/dev/null && zle zle-line-init
   return $ret
 }
+zle -N fzf-preview-widget
+
+function fzf-file-widget() {
+  LBUFFER="${LBUFFER}$(__fsel)"
+  local ret=$?
+  zle redisplay
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+zle -N fzf-file-widget
+
+# cd into the selected directory
+function fzf-cd-widget() {
+  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type d -print 2> /dev/null | cut -b3-"}"
+  setopt localoptions pipefail 2> /dev/null
+  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  cd "$dir"
+  local ret=$?
+  zle fzf-redraw-prompt
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+zle -N fzf-cd-widget
+
+# Paste the selected command from history into the command line
+fzf-history-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
+  selected=( $(fc -rl 1 |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle redisplay
+  typeset -f zle-line-init >/dev/null && zle zle-line-init
+  return $ret
+}
+zle     -N   fzf-history-widget
 
 ################################################################################
 
@@ -99,26 +179,11 @@ if [[ $commands[fzf] ]]; then
 
   # => Set hotkeys for some widgets (assuming they are already defined).
 
-  if typeset -f fzf-file-widget > /dev/null; then
-    bindkey '^T' fzf-file-widget
-  else
-    echo '> Widget "fzf-file-widget" is not defined: skipping..'
-  fi
-
-  if typeset -f fzf-cd-widget > /dev/null; then
-    bindkey '^E' fzf-cd-widget
-  else
-    echo '> Widget "fzf-cd-widget" is not defined: skipping..'
-  fi
-
-  if typeset -f fzf-history-widget > /dev/null; then
-    bindkey '^R' fzf-history-widget
-  else
-    echo '> Widget "fzf-history-widget" is not defined: skipping..'
-  fi
+  bindkey '^T' fzf-file-widget
+  bindkey '^E' fzf-cd-widget
+  bindkey '^R' fzf-history-widget
 
   # Set hotkeys for widgets defined in this file (=> they are always present).
-  zle     -N   fzf-preview-widget
   bindkey '^Y' fzf-preview-widget
 fi
 
