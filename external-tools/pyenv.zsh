@@ -61,7 +61,7 @@ for pyenvdir in "${pyenvdirs[@]}"; do
       export PYENV_ROOT="${pyenvdir}"
     fi
     export PATH="${pyenvdir}/bin:${PATH}"
-    eval "$(pyenv init - zsh)"
+    eval "$(pyenv init - zsh --no-rehash)"
   fi
 done
 unset pyenvdir
