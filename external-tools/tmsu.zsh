@@ -33,11 +33,13 @@
 
 
 if [[ "${commands[tmsu]}" ]]; then
+
   # Define custom aliases.
   abbrev-alias tmf="tmsu files"
   abbrev-alias tmt="tmsu tags"
   abbrev-alias tma="tmsu tag"
   abbrev-alias tmr="tmsu untag"
+
 fi
 
 

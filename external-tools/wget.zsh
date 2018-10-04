@@ -34,7 +34,7 @@
 
 if [[ "${commands[wget]}" ]]; then
   # Dump a website (with directory listing) using wget.
-  abbrev-alias wgetdump="wget -r -np -nH -e robots=off --retry-connrefused --tries=0 --waitretry=20"
+  abbrev-alias wget-dump="wget -r -np -nH -e robots=off --retry-connrefused --tries=0 --waitretry=20"
 fi
 
 

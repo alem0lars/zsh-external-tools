@@ -33,6 +33,7 @@
 
 
 if [[ $commands[rustup] ]]; then
+
   # Setup completion.
   local _rust_zsh_fn="$(rustc --print sysroot)/share/zsh/site-functions"
   if [ -d "${_rust_zsh_fn}" ]; then
@@ -53,6 +54,7 @@ if [[ $commands[rustup] ]]; then
   if [ -d "$(rustc --print sysroot)/lib/rustlib/src" ]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
   fi
+
 fi
 
 

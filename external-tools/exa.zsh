@@ -65,3 +65,6 @@ else # Fallback using ls
   alias la="ll -a"
 
 fi
+
+
+# vim: set filetype=zsh :

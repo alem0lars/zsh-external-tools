@@ -53,6 +53,7 @@ if [ $commands[sudo] ]; then
 
   zle -N sudo-command-line
   bindkey "\es" sudo-command-line
+
 fi
 
 

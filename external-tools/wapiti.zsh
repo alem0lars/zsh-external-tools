@@ -34,7 +34,7 @@
 
 if [[ "${commands[wapiti]}" ]]; then
 
-  abbrev-alias wapitiscan="wapiti -o . -u"
+  abbrev-alias wapiti-scan="wapiti -o . -u"
 
 fi
 

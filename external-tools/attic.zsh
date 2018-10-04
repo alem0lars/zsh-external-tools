@@ -33,5 +33,7 @@
 
 
 if [ $commands[attic] ]; then # check if 'attic' is installed
-  abbrev-alias ati="attic init --encryption=passphrase ssh://${USER}@localhost/"
+
+  abbrev-alias attic-init="attic init --encryption=passphrase ssh://${USER}@localhost/"
+
 fi

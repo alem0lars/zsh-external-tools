@@ -34,6 +34,7 @@
 
 # Allow to run executables installed by `cabal-install`.
 export PATH="${PATH}:~/.cabal/bin"
+
 # Allow to run executables within a cabal sandbox.
 export PATH="${PATH}:.cabal-sandbox/bin"
 

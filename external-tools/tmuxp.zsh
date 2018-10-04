@@ -42,7 +42,12 @@ _tmuxp_completion() {
 }
 
 if [ $commands[tmuxp] ]; then # check if 'tmuxp' is installed
+
   autoload -U bashcompinit
   bashcompinit
   complete -F _tmuxp_completion -o default tmuxp;
+
 fi
+
+
+# vim: set filetype=zsh :
