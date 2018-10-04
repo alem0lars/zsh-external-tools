@@ -35,6 +35,7 @@
 if [[ "${commands[nikto]}" ]]; then
 
   abbrev-alias niktoscan="nikto -Cgidirs=all -Format=htm -output=. -Save=. -host"
+  abbrev-alias niktoscanfull="nikto -Plugins=@@ALL -Cgidirs=all -Format=htm -output=. -Save=. -host"
 
 fi
 
