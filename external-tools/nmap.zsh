@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/git.zsh                                            #
-# - Summary: Support for git.                                                  #
+# - Name:    external-tools/nmap.zsh                                           #
+# - Summary: Support for nmap.                                                 #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -34,8 +34,16 @@
 
 if [[ "${commands[nmap]}" ]]; then
 
-  abbrev-alias nmap-deep="nmap -sV -sC -Pn -p 1-65535 -T5"
-  abbrev-alias nmap-port-knock="nmap -Pn --host-timeout 201 --max-retries 0 -p <port> <ip>"
+  # $1 = target address
+  function nmap-deep() {
+    nmap -sV -sC -Pn -p 1-65535 -T5 $1
+  }
+
+  # $1 = target address
+  # $2 = target port
+  function nmap-port-knock() {
+    nmap -Pn --host-timeout 201 --max-retries 0 -p $2 $1
+  }
 
 fi
 

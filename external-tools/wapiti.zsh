@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/git.zsh                                            #
-# - Summary: Support for git.                                                  #
+# - Name:    external-tools/wapiti.zsh                                         #
+# - Summary: Support for wapiti.                                               #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -34,7 +34,10 @@
 
 if [[ "${commands[wapiti]}" ]]; then
 
-  abbrev-alias wapiti-scan="wapiti -o . -u"
+  # $1 = target address
+  function wapiti-scan() {
+    wapiti -o . -u $1
+  }
 
 fi
 

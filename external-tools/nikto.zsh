@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/git.zsh                                            #
-# - Summary: Support for git.                                                  #
+# - Name:    external-tools/nikto.zsh                                          #
+# - Summary: Support for nikto.                                                #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -34,8 +34,15 @@
 
 if [[ "${commands[nikto]}" ]]; then
 
-  abbrev-alias nikto-scan="nikto -Cgidirs=all -Format=htm -output=. -Save=. -host"
-  abbrev-alias nikto-scan-full="nikto -Plugins=@@ALL -Cgidirs=all -Format=htm -output=. -Save=. -host"
+  # $1 = target url
+  function nikto-scan() {
+    nikto -Cgidirs=all -Format=htm -output=. -Save=. -host $1
+  }
+
+  # $1 = target url
+  function nikto-scan-full() {
+    nikto -Plugins=@@ALL -Cgidirs=all -Format=htm -output=. -Save=. -host $1
+  }
 
 fi
 
