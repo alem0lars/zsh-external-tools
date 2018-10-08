@@ -36,7 +36,7 @@ if [[ "${commands[golismero]}" ]]; then
 
   # $1 = target url
   function golismero-scan() {
-    golismero scan $1
+    golismero scan "${1}" -o "golismero-${1}-$(date +'%Y-%M-%d,%T.%3N').html"
   }
 
 fi
