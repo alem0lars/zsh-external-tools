@@ -49,6 +49,16 @@ if [ $commands[openssl] ]; then
   # Sign certificate
   abbrev-alias ossl-sign-crt="openssl x509 -req -in mycert.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out mycert.crt -days 500 -sha256"
 
+  # $1 = name
+  # $2 = certificate authority file name
+  # $3 = days of validity
+  function build-client() {
+    openssl genrsa -des3 -out "$1.key" 2048
+    openssl req -new -key "$1.key" -out "$1.csr"
+    openssl x509 -req -in "$1.csr" -CA "$2.pem" -CAkey "$2.key" \
+        -CAcreateserial -out "$1.crt" -days $3 -sha256
+  }
+
 fi
 
 
