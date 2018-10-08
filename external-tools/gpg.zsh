@@ -1,7 +1,7 @@
 # ─────────────────────────────────────────────────────────────────────────────┐
 #                                                                              │
-# Name:    external-tools/openssl.zsh                                          │
-# Summary: Integration with tool `openssl`.                                    │
+# Name:    external-tools/gpg.zsh                                              │
+# Summary: Integration with tool `gpg`.                                        │
 #                                                                              │
 # Authors:                                                                     │
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              │
@@ -32,35 +32,10 @@
 # ─────────────────────────────────────────────────────────────────────────────┘
 
 
-if [ $commands[openssl] ]; then
+if [ $commands[gpg] ]; then
 
-  # Create passwordless RSA key
-  abbrev-alias ossl-create-key="openssl genrsa -out mykey.key 2048"
-
-  # Create password-protected RSA key
-  abbrev-alias ossl-create-key-pwd="openssl genrsa -des3 -out mykey.key 2048"
-
-  # Create certificate signing request
-  abbrev-alias ossl-create-sign-req="openssl req -new -key device.key -out device.csr"
-
-  # Self-sign certificate
-  abbrev-alias ossl-selfsign-crt="openssl req -x509 -new -nodes -key mykey.key -sha256 -days 1024 -out mykey.pem"
-
-  # Sign certificate
-  abbrev-alias ossl-sign-crt="openssl x509 -req -in mycert.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out mycert.crt -days 500 -sha256"
-
-  # Export PKCS#12
-  abbrev-alias ossl-export-p12="openssl pkcs12 -export -in mycert.crt -inkey mykey.key -out out.p12"
-
-  # $1 = name
-  # $2 = certificate authority file name
-  # $3 = days of validity
-  function ossl-build-client() {
-    openssl genrsa -des3 -out "$1.key" 2048
-    openssl req -new -key "$1.key" -out "$1.csr"
-    openssl x509 -req -in "$1.csr" -CA "$2.pem" -CAkey "$2.key" \
-        -CAcreateserial -out "$1.crt" -days $3 -sha256
-  }
+  abbrev-alias gpgepub="gpg --export -a foo@example.com > public.key"
+  abbrev-alias gpgeprv="gpg --export-secret-keys -a foo@example.com > private.key"
 
 fi
 
