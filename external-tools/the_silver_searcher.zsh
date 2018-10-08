@@ -1,8 +1,8 @@
 # {{{ File header. #############################################################
 #                                                                              #
 # File informations:                                                           #
-# - Name:    external-tools/tree.zsh                                           #
-# - Summary: Support for tree.                                                 #
+# - Name:    external-tools/the_silver_searcher.zsh                            #
+# - Summary: Support for the_silver_searcher.                                  #
 # - Authors:                                                                   #
 #   - Alessandro Molari <molari.alessandro@gmail.com> (alem0lars)              #
 #                                                                              #
@@ -32,18 +32,9 @@
 # }}} ##########################################################################
 
 
-if [[ "${commands[tree]}" ]]; then
+if [ $commands[the_silver_searcher] ]; then # check if the_silver_searcher is installed
 
-  # Show tree.
-  abbrev-alias tr="tree -lFC --dirsfirst"
-  # Show tree with level == 1.
-  abbrev-alias tr1="tr -L 1"
-  # Show tree with level == 2.
-  abbrev-alias tr2="tr -L 2"
-  # Show tree with level == 3.
-  abbrev-alias tr3="tr -L 3"
-  # Show tree (verbose information).
-  abbrev-alias trv="tr -phug --du"
+  abbrev-alias ff="ag"
 
 fi
 
