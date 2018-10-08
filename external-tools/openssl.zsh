@@ -52,7 +52,7 @@ if [ $commands[openssl] ]; then
   # $1 = name
   # $2 = certificate authority file name
   # $3 = days of validity
-  function build-client() {
+  function ossl-build-client() {
     openssl genrsa -des3 -out "$1.key" 2048
     openssl req -new -key "$1.key" -out "$1.csr"
     openssl x509 -req -in "$1.csr" -CA "$2.pem" -CAkey "$2.key" \
