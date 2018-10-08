@@ -52,8 +52,10 @@ if [[ "${commands[git]}" ]]; then
 
   abbrev-alias gib="git submodule update --init --recursive --remote"
 
-  abbrev-alias gts="git stash save"
-  abbrev-alias gtp="git stash pop"
+  abbrev-alias gits="git stash save"
+  abbrev-alias gitp="git stash pop"
+
+  abbrev-alias gigc="git gc --aggressive --prune=all"
 
 fi
 
