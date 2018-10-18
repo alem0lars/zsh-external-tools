@@ -34,7 +34,7 @@
 
 if [ $commands[exa] ]; then
 
-  alias l="exa -bgh --git --classify"
+  alias l="exa -bgh --classify"
   alias ll="ll1"
   alias lr="l -R"
   alias la="l -a"
