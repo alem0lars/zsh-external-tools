@@ -34,6 +34,7 @@
 
 if [ $commands[ffmpeg] ]; then # check if 'ffmpeg' is installed
 
-  abbrev-alias record-screen="ffmpeg -f x11grab -s 2880x1620 -i :0.0 -r 25 -vcodec libx264 output.mkv"
+  abbrev-alias record-screen-1st="ffmpeg -f x11grab -s 2880x1620 -i :0.0 -r 25 -vcodec libx264 output.mkv"
+  abbrev-alias record-screen-2nd="ffmpeg -f x11grab -s 3840x2160 -i :0.0+2880,0 -r 25 -vcodec libx264 output.mkv"
 
 fi
