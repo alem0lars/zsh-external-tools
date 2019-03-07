@@ -35,7 +35,7 @@
 if [[ "${commands[tree]}" ]]; then
 
   # Show tree.
-  abbrev-alias tr="tree -lFC --dirsfirst"
+  abbrev-alias tre="tree -lFC --dirsfirst"
   # Show tree with level == 1.
   abbrev-alias tr1="tr -L 1"
   # Show tree with level == 2.
