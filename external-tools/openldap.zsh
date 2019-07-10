@@ -34,7 +34,7 @@
 
 if [ $commands[ldapsearch] ]; then
 
-  abbrev-alias ldapsearch-user="sudo ldapsearch -Z -x -LLL -D uid=myusername,ou=users,dc=mydomain,dc=mytld -W"
+  abbrev-alias ldapsearch-user="sudo ldapsearch -ZZ -x -LLL -D uid=myusername,ou=users,dc=mydomain,dc=mytld -W"
 
 fi
 
