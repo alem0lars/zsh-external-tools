@@ -34,7 +34,7 @@
 
 if [ $commands[sha256sum] ]; then
 
-  abbrev-alias checksum-recursive="find . -type f -exec sha256sum '{}' \\; | sha256sum"
+  abbrev-alias checksum-recursive="find . -type f -exec sha256sum '{}' \\; | sort | sha256sum"
 
 fi
 
